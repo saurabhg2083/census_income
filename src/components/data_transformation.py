@@ -55,7 +55,6 @@ class DataTransformation:
                 ('ordinalencoder',OrdinalEncoder(categories=[workclass_categories,education_categories,marital_status_categories,occupation_categories,relationship_categories,race_categories,sex_categories,native_country_categories])),
                 ('scaler',StandardScaler())
                 ]
-
             )
 
             preprocessor=ColumnTransformer([

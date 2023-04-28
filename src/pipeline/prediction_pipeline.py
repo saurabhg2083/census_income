@@ -17,7 +17,7 @@ class PredictPipeline:
 
             preprocessor=load_object(preprocessor_path)
             model=load_object(model_path)
-
+            logging.info(features)
             data_scaled=preprocessor.transform(features)
 
             pred=model.predict(data_scaled)
@@ -30,41 +30,57 @@ class PredictPipeline:
         
 class CustomData:
     def __init__(self,
-                 carat:float,
-                 depth:float,
-                 table:float,
-                 x:float,
-                 y:float,
-                 z:float,
-                 cut:str,
-                 color:str,
-                 clarity:str):
+                 age:float,
+                 workclass:str,
+                 fnlwgt:float,
+                 education:str,
+                 education_num:float,
+                 marital_status:str,
+                 occupation:str,
+                 relationship:str,
+                 race:str,
+                 sex:str,
+                 capital_gain:float,
+                 capital_loss:float,
+                 hours_per_week:float,
+                 native_country:str):
         
-        self.carat=carat
-        self.depth=depth
-        self.table=table
-        self.x=x
-        self.y=y
-        self.z=z
-        self.cut = cut
-        self.color = color
-        self.clarity = clarity
+        self.age=age
+        self.workclass=workclass
+        self.fnlwgt=fnlwgt
+        self.education=education
+        self.education_num=education_num
+        self.marital_status=marital_status
+        self.occupation = occupation
+        self.relationship = relationship
+        self.race = race
+        self.sex=sex
+        self.capital_gain=capital_gain
+        self.capital_loss = capital_loss
+        self.hours_per_week = hours_per_week
+        self.native_country = native_country
 
     def get_data_as_dataframe(self):
         try:
             custom_data_input_dict = {
-                'carat':[self.carat],
-                'depth':[self.depth],
-                'table':[self.table],
-                'x':[self.x],
-                'y':[self.y],
-                'z':[self.z],
-                'cut':[self.cut],
-                'color':[self.color],
-                'clarity':[self.clarity]
+                'age':[self.age],
+                'workclass':[self.workclass],
+                'fnlwgt':[self.fnlwgt],
+                'education':[self.education],
+                'education_num':[self.education_num],
+                'marital_status':[self.marital_status],
+                'occupation':[self.occupation],
+                'relationship':[self.relationship],
+                'race':[self.race],
+                'sex':[self.sex],
+                'capital_gain':[self.capital_gain],
+                'capital_loss':[self.capital_loss],
+                'hours_per_week':[self.hours_per_week],
+                'native_country':[self.native_country]
             }
             df = pd.DataFrame(custom_data_input_dict)
             logging.info('Dataframe Gathered')
+            logging.info(df)
             return df
         except Exception as e:
             logging.info('Exception Occured in prediction pipeline')
